@@ -6,16 +6,19 @@ import { AuthService } from './auth.service';
 import { SchemaModule } from 'src/schema/schema.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { JwtStrategy } from './jwt.strategy';
+import { PassportModule } from '@nestjs/passport';
 
 const _controllers = [AuthController]
 
-const _providers = [AuthService]
+const _providers = [AuthService, JwtStrategy]
 
 const _imports = [SchemaModule, JwtModule.registerAsync({
 
     inject: [ConfigService],
 
     useFactory: (config: ConfigService) => {
+      
         return {
             secret: config.get<string>("JWT_SECRET"),
             signOptions: {
@@ -24,11 +27,14 @@ const _imports = [SchemaModule, JwtModule.registerAsync({
         }
     },
 }),
+    PassportModule.register({ defaultStrategy: 'jwt' })
 ]
+const _exports = [AuthService, JwtStrategy,PassportModule,JwtModule];
 
 @Module({
     controllers: [..._controllers],
     providers: [..._providers],
-    imports: [..._imports]
+    imports: [..._imports],
+    exports: [..._exports]
 })
 export class AuthModule { }

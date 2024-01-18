@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { SignupDto } from './dto/signup.dto';
-import {  compareSync, hashSync } from 'bcrypt'
+import { compareSync, hashSync } from 'bcrypt'
 import { InjectModel } from '@nestjs/mongoose';
 import { Users } from 'src/schema/users.schema';
 import { Model } from 'mongoose';
@@ -39,6 +39,13 @@ export class AuthService {
             return { token };
         }
         throw new UnauthorizedException();
+
+    }
+
+    async searchUserById(id:string) {
+        
+        return  this.userModel.findById(id);
+
 
     }
 }

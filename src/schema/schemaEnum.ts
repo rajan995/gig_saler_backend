@@ -1,3 +1,3 @@
-export enum GIG_PACKAGE_FIELD_TYPE { RADIO, TEXT, CHECK }
-export enum GIG_PACKAGE_TYPE { BASIC, STANDARD, PREMIUM, CUSTOM }
-export  enum USER_ROLE_ENUM { ADMIN, USER, SALER };
+export enum GIG_PACKAGE_FIELD_TYPE { RADIO="radio", TEXT="text", CHECK="checkbox" }
+export enum GIG_PACKAGE_TYPE { BASIC="basic", STANDARD="standard", PREMIUM="premium", CUSTOM="custom" }
+export  enum USER_ROLE_ENUM { ADMIN="admin", USER="user" };

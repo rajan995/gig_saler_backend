@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import {  isEmail } from "class-validator";
 import { USER_ROLE_ENUM } from "./schemaEnum";
-
+import { Document } from "mongoose";
 
 @Schema({timestamps:true})
-export class Users {
+export class Users extends Document {
     @Prop({ type:String, required: false })
     firstName: string;
 

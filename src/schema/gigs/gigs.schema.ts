@@ -15,6 +15,5 @@ export class Gigs {
 
 }
 
-
 export const GigSchema = SchemaFactory.createForClass(Gigs);
 
